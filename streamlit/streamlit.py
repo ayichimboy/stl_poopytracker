@@ -84,7 +84,7 @@ if uploaded_file:
 # Extract GPS data from the uploaded image
     lat, lon = extract_gps_from_image(uploaded_file)
     file_name = uploaded_file.name
-    timestamp = datetime.datetime.now().strftime("%m/%-d/%Y %H:%M") 
+    timestamp = datetime.datetime.now().isoformat()
     working_sheet.append_row([timestamp, file_name, lat, lon])
     st.success("Logged Location Successfully!✅")
 
