@@ -83,7 +83,7 @@ if uploaded_file:
 # Extract GPS data from the uploaded image
     lat, lon = extract_gps_from_image(uploaded_file)
     file_name = uploaded_file.name
-    timestamp = datetime.datetime.now().isoformat()
+    timestamp = datetime.datetime.now().strftime("%m/%-d/%Y %H:%M") 
     working_sheet.append_row([timestamp, file_name, lat, lon])
     st.success("Logged Location Successfully!✅")
 
@@ -102,6 +102,9 @@ df['longitude'] = pd.to_numeric(df.iloc[:,3], errors='coerce')
 
 # Filter out rows with NaN values in latitude or longitude
 df = df.dropna(subset=['latitude', 'longitude'])
+
+# display the current poop location with a different color but keep all red
+
 st.map(df[['latitude', 'longitude']], 
        size=10, color="#ff0033",zoom=15, use_container_width=True)
 
