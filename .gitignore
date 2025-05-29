@@ -174,3 +174,4 @@ cython_debug/
 .pypirc
 
 
+streamlit/poopymapper_credentials.json
