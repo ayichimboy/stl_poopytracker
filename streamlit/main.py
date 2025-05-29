@@ -8,6 +8,7 @@ import pandas as pd
 import time
 
 # --- Google Sheets Auth ---
+
 client = gspread.service_account(filename='poopymapper_credentials.json')
 working_sheet = client.open("PoopLocations").sheet1
 
