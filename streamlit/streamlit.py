@@ -5,6 +5,7 @@ import datetime
 import piexif
 import gspread
 import pandas as pd
+import pydeck as pdk
 import time
 import json
 import os
@@ -105,12 +106,92 @@ df = df.dropna(subset=['latitude', 'longitude'])
 
 # display the current poop location with a different color but keep all red
 # lates logged location
-df_latest = df.iloc[-1:]  # Get the last row (latest log)
+# df_latest = df.iloc[-1:]  # Get the last row (latest log)
 
-# plot the mapp with all the poop all locations in red and the latest location in a different color
-st.map(df_latest[['latitude', 'longitude']], 
-       size=15, color="#2200ff",zoom=15, use_container_width=True)
+# # plot the mapp with all the poop all locations in red and the latest location in a different color
+# st.map(df_latest[['latitude', 'longitude']], 
+#        size=15, color="#2200ff",zoom=15, use_container_width=True)
 
-st.map(df[['latitude', 'longitude']], 
-       size=10, color="#ff0033",zoom=15, use_container_width=True)
+# st.map(df[['latitude', 'longitude']], 
+#        size=10, color="#ff0033",zoom=15, use_container_width=True)
+
+
+# # Get latest row
+# df_latest = df.iloc[-1:]
+# df_others = df.iloc[:-1]
+
+# # Define red layer for all other logs
+# red_layer = pdk.Layer(
+#     "ScatterplotLayer",
+#     data=df_others,
+#     get_position='[longitude, latitude]',
+#     get_fill_color='[255, 0, 0]',  # red
+#     get_radius=20,
+# )
+
+# # Define blue layer for latest point
+# blue_layer = pdk.Layer(
+#     "ScatterplotLayer",
+#     data=df_latest,
+#     get_position='[longitude, latitude]',
+#     get_fill_color='[0, 0, 255]',  # blue
+#     get_radius=30,
+# )
+
+# # Define view state centered on latest log
+# view_state = pdk.ViewState(
+#     latitude=df_latest.iloc[0]['latitude'],
+#     longitude=df_latest.iloc[0]['longitude'],
+#     zoom=15,
+# )
+
+# # Combine and display
+# st.pydeck_chart(pdk.Deck(
+#     initial_view_state=view_state,
+#     map_style='mapbox://styles/mapbox/streets-v11',
+#     layers=[red_layer, blue_layer]
+# ))
+
+
+# Assume df has 'latitude', 'longitude', and 'timestamp' columns
+# Get latest log (most recent entry)
+df_latest = df.iloc[-1:]
+df_others = df.iloc[:-1]
+
+# Create red layer for previous logs
+previous_logs = pdk.Layer(
+    "ScatterplotLayer",
+    data=df_others,
+    get_position='[longitude, latitude]',
+    get_fill_color='[255, 0, 0]',  # red
+    get_radius=100,
+)
+
+# Create blue layer for the most recent log
+latest_log = pdk.Layer(
+    "ScatterplotLayer",
+    data=df_latest,
+    get_position='[longitude, latitude]',
+    get_fill_color='[0, 0, 255]',  # blue
+    get_radius=150,
+)
+
+# Set initial view to latest log position
+view_state = pdk.ViewState(
+    latitude=df_latest.iloc[0]['latitude'],
+    longitude=df_latest.iloc[0]['longitude'],
+    zoom=15,
+    pitch=0
+)
+
+# Combine both layers in one map
+deck = pdk.Deck(
+    initial_view_state=view_state,
+    layers=[previous_logs, latest_log],
+    map_style='mapbox://styles/mapbox/streets-v11',
+    tooltip={"text": "Lat: {latitude}, Lon: {longitude}"}
+)
+
+# Render only once
+st.pydeck_chart(deck)
 
