@@ -11,10 +11,10 @@ import os
 
 # --- Google Sheets Auth ---
 # Load credentials from GitHub/Streamlit secret environment variable
-if "poopymapper_credentials.json" not in os.environ:
+if "poopymapper_credentials_json" not in os.environ:
     raise EnvironmentError("Missing CREDENTIALS in environment variables")
 
-gcp_credentials_dict = json.loads(os.environ["poopymapper_credentials.json"])
+gcp_credentials_dict = json.loads(os.environ["poopymapper_credentials_json"])
 client = gspread.service_account(filename=gcp_credentials_dict)
 
 # client = gspread.service_account(filename='poopymapper_credentials.json')
