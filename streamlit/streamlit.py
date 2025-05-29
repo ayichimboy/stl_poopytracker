@@ -104,6 +104,12 @@ df['longitude'] = pd.to_numeric(df.iloc[:,3], errors='coerce')
 df = df.dropna(subset=['latitude', 'longitude'])
 
 # display the current poop location with a different color but keep all red
+# lates logged location
+df_latest = df.iloc[-1:]  # Get the last row (latest log)
+
+# plot the mapp with all the poop all locations in red and the latest location in a different color
+st.map(df_latest[['latitude', 'longitude']], 
+       size=15, color="#2200ff",zoom=15, use_container_width=True)
 
 st.map(df[['latitude', 'longitude']], 
        size=10, color="#ff0033",zoom=15, use_container_width=True)

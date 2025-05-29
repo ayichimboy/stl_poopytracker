@@ -3,3 +3,4 @@ pillow==11.2.1
 streamlit==1.45.1
 pandas==2.2.3
 gspread==6.2.1
+pydeck==0.9.1
