@@ -180,7 +180,7 @@ latest_log = pdk.Layer(
 view_state = pdk.ViewState(
     latitude=df_latest.iloc[0]['latitude'],
     longitude=df_latest.iloc[0]['longitude'],
-    zoom=10,
+    zoom=15,
     pitch=0
 )
 
