@@ -164,7 +164,7 @@ previous_logs = pdk.Layer(
     data=df_others,
     get_position='[longitude, latitude]',
     get_fill_color='[255, 0, 0]',  # red
-    get_radius=100,
+    get_radius=10,
 )
 
 # Create blue layer for the most recent log
@@ -173,7 +173,7 @@ latest_log = pdk.Layer(
     data=df_latest,
     get_position='[longitude, latitude]',
     get_fill_color='[0, 0, 255]',  # blue
-    get_radius=150,
+    get_radius=15,
 )
 
 # Set initial view to latest log position
