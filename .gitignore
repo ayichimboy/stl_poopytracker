@@ -172,6 +172,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-
+feature/runs
+.pt
 
 streamlit/poopymapper_credentials.json
