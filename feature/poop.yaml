@@ -1,0 +1,4 @@
+train: "C:/Users/Owner/poopy/stl_poopytracker/feature/train/images"
+val: "C:/Users/Owner/poopy/stl_poopytracker/feature/val/images"
+nc: 1
+names: ["Dog Poop"]
