@@ -9,6 +9,7 @@ import gspread
 import pandas as pd
 import json
 import pydeck as pdk
+import cv2
 
 # --- Google Sheets Auth ---
 # Load credentials from GitHub/Streamlit secret environment variable

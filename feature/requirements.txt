@@ -7,3 +7,4 @@ pydeck==0.9.1
 torch==2.7.0
 ultralytics==8.3.146
 ultralytics-thop==2.0.14
+opencv-python==4.11.0.86
