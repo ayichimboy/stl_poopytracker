@@ -11,6 +11,7 @@ import json
 import pydeck as pdk
 import cv2
 
+
 # --- Google Sheets Auth ---
 # Load credentials from GitHub/Streamlit secret environment variable
 if "poopymapper_credentials_json" not in st.secrets:
