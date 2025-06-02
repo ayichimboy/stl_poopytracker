@@ -49,7 +49,7 @@ def extract_gps_from_image(image):
         return None, None
 
 # Run inference with the YOLOv8n model on the 'poop.jpg' image
-new_poop_model = YOLO("final_poop_model.pt")
+new_poop_model = YOLO("feature/final_poop_model.pt")
 
 # Configure Streamlit app
 st.set_page_config(layout='centered', page_title="STL Poopy Tracker", page_icon="🐕💩")
